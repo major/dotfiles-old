@@ -1,0 +1,32 @@
+#/bin/bash
+set -euo pipefail
+
+# Allow capturing the active window instead of using a selection tool.
+CAPTURE=${1:-box}
+
+# Set up the local filename and path.
+FILE_STRING=$(date +%s | sha256sum | cut -c1-8)
+FILE_NAME="${FILE_STRING}.png"
+SCREENSHOT_PATH="/home/major/Pictures/screenshots/${FILE_NAME}"
+
+# Configure the B2/CDN details.
+CDN_URL="https://cdn.major.io"
+BUCKET_NAME=majors-static-files
+PUBLIC_URL=${CDN_URL}/${FILE_NAME}
+
+# Take a screenshot.
+if [[ $CAPTURE == "box" ]]; then
+    grim -g "$(slurp)" ${SCREENSHOT_PATH}
+else
+    grim -g "$(swaymsg -t get_tree | jq -j '.. | select(.type?) | select(.focused).rect | "\(.x),\(.y) \(.width)x\(.height)"')" ${SCREENSHOT_PATH}
+fi
+
+# Upload the screenshot to S3.
+s3cmd put ${SCREENSHOT_PATH} s3://${BUCKET_NAME}
+
+# Prime the CDN cache and verify the screenshot is there.
+curl -o /tmp/${FILE_NAME} $PUBLIC_URL
+
+# Send a notification and copy the URL to the clipboard for faster posting. 😜
+notify-send -i ${SCREENSHOT_PATH} "Screenshot uploaded" $PUBLIC_URL
+echo -n $PUBLIC_URL | wl-copy
