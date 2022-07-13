@@ -119,4 +119,7 @@ eval "$(pyenv init -)"
 # Enable autocompletion.
 autoload -U compinit; compinit
 
+# Use the ssh-agent started by systemd.
+export SSH_AUTH_SOCK="$XDG_RUNTIME_DIR/ssh-agent.socket"
+
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
