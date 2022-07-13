@@ -1,0 +1,26 @@
+# Make the ssh console work on Equinix Metal (formerly packet.net)
+Host *.platformequinix.com
+    PubkeyAcceptedAlgorithms +ssh-rsa
+    HostkeyAlgorithms +ssh-rsa
+    PubkeyAcceptedKeyTypes +ssh-rsa
+
+# GitHub, obviously.
+Host github.com
+  IdentityFile ~/.ssh/github_rsa
+
+# Fedora systems.
+Host *.fedoraproject.org
+  IdentityFile ~/.ssh/fedora_fas
+  User mhayden
+
+Host *.fedorahosted.org
+  IdentityFile ~/.ssh/fedora_fas
+  User mhayden
+
+# Include sensitive ssh configs. 🤫
+Include config_sensitive
+
+# Everything else. Try the newest key first.
+Host *
+  IdentityFile ~/.ssh/personal_servers_ecdsa
+  IdentityFile ~/.ssh/personal_servers
