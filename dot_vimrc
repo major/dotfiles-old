@@ -1,0 +1,126 @@
+set nocompatible              " be iMproved, required
+
+call plug#begin()
+Plug 'pbrisbin/vim-mkdir'
+Plug 'tpope/vim-fugitive'
+Plug 'tpope/vim-surround'
+Plug 'tpope/vim-commentary'
+Plug 'tpope/vim-vinegar'
+Plug 'tpope/vim-rhubarb'
+Plug 'arcticicestudio/nord-vim'
+Plug 'vim-airline/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
+Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
+Plug 'junegunn/fzf.vim'
+Plug 'airblade/vim-rooter'
+Plug 'davidhalter/jedi-vim', { 'for': 'python' }
+Plug 'vim-scripts/python.vim', { 'for': 'python' }
+Plug 'hynek/vim-python-pep8-indent', { 'for': 'python' }
+Plug 'okcompute/vim-python-motions', { 'for': 'python' }
+Plug 'pearofducks/ansible-vim'
+Plug 'jiangmiao/auto-pairs'
+Plug 'luochen1990/rainbow'
+Plug 'Matt-Deacalion/vim-systemd-syntax'
+Plug 'machakann/vim-highlightedyank'
+Plug 'rhysd/conflict-marker.vim'
+Plug 'cespare/vim-toml', { 'branch': 'main' }
+call plug#end()
+
+" Ruler
+" set colorcolumn=80
+set autoindent expandtab tabstop=2 shiftwidth=2
+set noshowmode
+
+" Syntax + file types
+syntax on
+filetype plugin indent on
+filetype on
+filetype plugin on
+
+" Common settings
+" let mapleader=" "
+" let maplocalleader=";"
+set modeline
+set tabstop=4
+set softtabstop=4
+set shiftwidth=4
+set expandtab
+set autoindent
+set showmatch
+set ruler
+set incsearch
+set number
+set relativenumber
+set hlsearch
+set ignorecase
+set smartcase
+set cursorline
+set nocursorcolumn
+set hidden
+set lazyredraw
+set wildmenu
+set wildmode=list:full
+set scrolloff=5
+set sidescrolloff=5
+set winheight=5
+set winminheight=5
+set nofixendofline
+set history=10000
+set visualbell
+set noshowmode
+
+" Common setting toggles
+noremap <silent><leader>/ :nohlsearch<CR>
+noremap <silent><leader>S :set spell!<CR>
+
+" put new splits below and vsplits right
+set splitbelow
+set splitright
+" vertical split for diff
+set diffopt+=vertical
+" ignore whitespace and blank lines for diff
+set diffopt+=iwhiteall,iblank
+" update stuff quicker (default 4000)
+set updatetime=1000
+" don't show keystrokes
+set noshowcmd
+" mouse stuff for terminal
+set mouse=a
+if !has('nvim')
+    " not supported in neovim
+    set ttymouse=xterm2  " makes selections fast in tmux
+endif
+" never autoinsert a completion option
+set completeopt=noinsert,menuone,noselect
+" move beyond end of line in block selection mode
+set virtualedit=block
+" always show sign column (used by gitgutter)
+set signcolumn=yes
+
+" fixes glitch? in colors when using vim with tmux
+"set background=dark
+"set t_Co=256
+"set termguicolors
+
+if exists('+termguicolors')
+  let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
+  let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
+  set termguicolors
+endif
+
+" Highlight word under cursor passively (with custom style)
+highlight MatchWord term=reverse ctermfg=69
+autocmd CursorMoved,InsertLeave * exe printf('match MatchWord /\V\<%s\>/', escape(expand('<cword>'), '/\'))
+autocmd InsertEnter * match none
+
+" Colors
+colorscheme nord
+highlight Comment ctermfg=darkgray cterm=italic
+let g:airline_theme='nord'
+
+" ALE {{{
+let g:ale_lint_on_save = 1
+let g:ale_lint_on_enter = 1
+let g:ale_lint_on_text_changed = 1
+let g:ale_sign_column_always = 1
+" }}}

@@ -10,3 +10,19 @@
     url = "https://github.com/spaceship-prompt/spaceship-prompt/archive/refs/tags/v3.16.7.tar.gz"
     exact = true
     stripComponents = 1
+
+[".vim/autoload/plug.vim"]
+    type = "file"
+    url = "https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim"
+    refreshPeriod = "168h"
+
+{{ $ageVersion := "1.0.0" -}}
+[".local/bin/age"]
+    type = "file"
+    url = "https://github.com/FiloSottile/age/releases/download/v{{ $ageVersion }}/age-v{{ $ageVersion }}-{{ .chezmoi.os }}-{{ .chezmoi.arch }}.tar.gz"
+    executable = true
+    refreshPeriod = "168h"
+    [".local/bin/age".filter]
+        command = "tar"
+        args = ["--extract", "--file", "/dev/stdin", "--gzip", "--to-stdout", "age/age"]
+
