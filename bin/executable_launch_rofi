@@ -1,0 +1,4 @@
+#!/bin/bash
+
+MONITOR_ID=XWAYLAND$(swaymsg -t get_outputs | jq '[.[].focused] | index(true)')
+rofi -monitor $MONITOR_ID -combi-modi drun#ssh -theme solarized -font "hack 10" -show combi
