@@ -76,7 +76,7 @@ source $ZSH/oh-my-zsh.sh
 
 # User configuration
 
-export PATH=~/bin:${PATH}:~/.rbenv/bin
+export PATH=~/.local/bin:~/bin:${PATH}
 
 # export MANPATH="/usr/local/man:$MANPATH"
 
