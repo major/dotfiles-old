@@ -26,16 +26,11 @@
         command = "tar"
         args = ["--extract", "--file", "/dev/stdin", "--gzip", "--to-stdout", "age/age"]
 
-{{ $resticVersion := "0.13.1" -}}
 [".local/bin/restic"]
     type = "file"
-    url = "https://github.com/restic/restic/releases/download/v{{ $resticVersion }}/restic_{{ $resticVersion }}_linux_amd64.bz2"
+    url = "https://beta.restic.net/latest_restic_linux_amd64"
     executable = true
     refreshPeriod = "168h"
-    [".local/bin/restic".filter]
-        command = "bunzip2"
-        #args = ["--extract", "--file", "/dev/stdin", "--gzip", "--to-stdout", "age/age"]
-
 
 [".tmux/plugins/tpm"]
     type = "archive"
