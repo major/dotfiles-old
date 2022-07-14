@@ -32,6 +32,14 @@
     executable = true
     refreshPeriod = "168h"
 
+[".local/bin/autorestic"]
+    type = "file"
+    url = "https://github.com/cupcakearmy/autorestic/releases/download/v1.7.1/autorestic_1.7.1_linux_amd64.bz2"
+    executable = true
+    refreshPeriod = "168h"
+    [".local/bin/autorestic".filter]
+        command = "bunzip2"
+
 [".tmux/plugins/tpm"]
     type = "archive"
     url = "https://github.com/tmux-plugins/tpm/archive/master.tar.gz"
