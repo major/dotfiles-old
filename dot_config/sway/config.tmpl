@@ -222,15 +222,21 @@ input "1241:662:USB-HID_Keyboard" {
 bindsym Print exec --no-startup-id "~/bin/grim-screenshot-upload"
 bindsym shift+Print exec --no-startup-id "~/bin/grim-screenshot-upload window"
 
+{{ if eq .chezmoi.hostname "nano" }}
+output eDP-1 {
+  scale 1
+}
+{{ else if eq .chezmoi.hostname "amdbox" }}
 output DP-2 {
   scale 1
-  bg /home/major/Pictures/Wallpapers/joshua-wordel-1L_5PT7EKzU-unsplash.jpg fill
+  #bg /home/major/Pictures/Wallpapers/joshua-wordel-1L_5PT7EKzU-unsplash.jpg fill
 }
 
 output DP-3 {
   scale 1
-  bg /home/major/Pictures/Wallpapers/joshua-wordel-1L_5PT7EKzU-unsplash.jpg fill
+  #bg /home/major/Pictures/Wallpapers/joshua-wordel-1L_5PT7EKzU-unsplash.jpg fill
 }
+{{ end }}
 
 for_window [class="vlc"] floating enable
 for_window [title=".*Sharing Indicator"] floating enable
