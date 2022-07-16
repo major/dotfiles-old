@@ -230,6 +230,7 @@ bindsym shift+Print exec --no-startup-id "~/bin/grim-screenshot-upload window"
 {{ if eq .chezmoi.hostname "nano" }}
 output eDP-1 {
   scale 1
+  bg ~/.config/sway/dimitri-jablokov-Ri3C2Se_Qrw-unsplash.jpg fill
 }
 
 input "1:1:AT_Translated_Set_2_keyboard" {
@@ -247,12 +248,12 @@ input "1267:12624:ELAN0670:00_04F3:3150_Touchpad" {
 {{ else if eq .chezmoi.hostname "amdbox" }}
 output DP-2 {
   scale 1
-  #bg /home/major/Pictures/Wallpapers/joshua-wordel-1L_5PT7EKzU-unsplash.jpg fill
+  bg /home/major/Pictures/Wallpapers/joshua-wordel-1L_5PT7EKzU-unsplash.jpg fill
 }
 
 output DP-3 {
   scale 1
-  #bg /home/major/Pictures/Wallpapers/joshua-wordel-1L_5PT7EKzU-unsplash.jpg fill
+  bg /home/major/Pictures/Wallpapers/joshua-wordel-1L_5PT7EKzU-unsplash.jpg fill
 }
 {{ end }}
 
