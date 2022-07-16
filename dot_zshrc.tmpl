@@ -112,7 +112,10 @@ alias f35-rpmbuild="FEDORA_RELEASE=35 ~/bin/rawhide-rpmbuild $@"
 
 export PYENV_ROOT="$HOME/.pyenv"
 command -v pyenv >/dev/null || export PATH="$PYENV_ROOT/bin:$PATH"
+
+{{ if eq .chezmoi.hostname "amdbox" }}
 eval "$(pyenv init -)"
+{{ end }}
 
 # Enable autocompletion.
 autoload -U compinit; compinit
