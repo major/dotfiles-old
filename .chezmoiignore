@@ -3,5 +3,3 @@ LICENSE
 README.md
 renovate.json
 
-# oh-my-zsh populates a cache frequently.
-.oh-my-zsh/cache
