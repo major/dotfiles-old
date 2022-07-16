@@ -54,7 +54,12 @@ set $term foot
 # Basics:
 #
     # Start a terminal
+{{ if eq .chezmoi.hostname "amdbox" }}
     bindsym $mod+Return exec $term
+{{ else if eq .chezmoi.hostname "nano" }}
+    bindsym $mod+Return exec $term -L toolbox run zsh
+    bindsym $mod+Shift+Return exec $term
+{{ end }}
 
     # Kill focused window
     bindsym $mod+Shift+q kill

@@ -23,17 +23,20 @@
     },
     "modules-right": [
         "custom/uname",
+{{- if eq .chezmoi.hostname "amdbox" }}
         "custom/egauge",
         "custom/amdups",
         "custom/firewallups",
+{{- end }}
         "memory",
         "cpu",
         "disk",
         "pulseaudio",
+        {{ if eq .chezmoi.hostname "nano" }}"battery",{{ end }}
         "tray"
     ],
     "custom/weather": {
-        "exec": "curl 'wttr.in/?format=%C+%c+%t+(%f)+%h+%P+%m+UV%u+%w'",
+        "exec": "curl --connect-timeout 2 'wttr.in/?format=%C+%c+%t+(%f)+%h+%P+%m+UV%u+%w'",
         "format": "{}",
         "interval": 1500
     },
@@ -109,5 +112,15 @@
     "tray": {
         "icon-size": 14,
         "spacing": 5
+    },
+    "battery": {
+        "interval": 60,
+        "states": {
+            "warning": 30,
+            "critical": 15
+        },
+        "format": "{power:0.1f}W {capacity}% {icon}",
+        "format-icons": ["", "", "", "", ""],
+        "max-length": 25
     }
 }
