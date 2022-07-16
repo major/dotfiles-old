@@ -57,7 +57,7 @@ set $term foot
 {{ if eq .chezmoi.hostname "amdbox" }}
     bindsym $mod+Return exec $term
 {{ else if eq .chezmoi.hostname "nano" }}
-    bindsym $mod+Return exec $term -L toolbox run zsh
+    bindsym $mod+Return exec $term -L toolbox enter
     bindsym $mod+Shift+Return exec $term
 {{ end }}
 
