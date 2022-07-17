@@ -54,12 +54,7 @@ set $term foot
 # Basics:
 #
     # Start a terminal
-{{ if eq .chezmoi.hostname "amdbox" }}
     bindsym $mod+Return exec $term
-{{ else if eq .chezmoi.hostname "nano" }}
-    bindsym $mod+Return exec $term -L toolbox enter
-    bindsym $mod+Shift+Return exec $term
-{{ end }}
 
     # Kill focused window
     bindsym $mod+Shift+q kill
@@ -216,6 +211,8 @@ exec wl-paste -t text --watch clipman store --no-persist
 exec_always nm-applet --indicator
 exec_always --no-startup-id pkill pasystray; pasystray --key-grabbing --notify=all
 exec_always --no-startup-id pkill blueman-applet; blueman-applet
+
+exec systemctl start --user ssh-agent
 
 exec_always pactl load-module module-switch-on-connect
 
