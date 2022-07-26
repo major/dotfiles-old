@@ -4,7 +4,8 @@
     url = "https://github.com/ohmyzsh/ohmyzsh/archive/master.tar.gz"
     exact = true
     stripComponents = 1
-    refreshPeriod = "168h"
+    refreshPeriod = "24h"
+
 [".oh-my-zsh/custom/themes/spaceship-prompt"]
     type = "archive"
     url = "https://github.com/spaceship-prompt/spaceship-prompt/archive/refs/tags/v3.16.7.tar.gz"
@@ -31,14 +32,6 @@
     url = "https://beta.restic.net/latest_restic_linux_amd64"
     executable = true
     refreshPeriod = "168h"
-
-[".local/bin/autorestic"]
-    type = "file"
-    url = "https://github.com/cupcakearmy/autorestic/releases/download/v1.7.1/autorestic_1.7.1_linux_amd64.bz2"
-    executable = true
-    refreshPeriod = "168h"
-    [".local/bin/autorestic".filter]
-        command = "bunzip2"
 
 [".tmux/plugins/tpm"]
     type = "archive"
