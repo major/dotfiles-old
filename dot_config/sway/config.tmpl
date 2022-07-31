@@ -209,7 +209,7 @@ bindsym $mod+l exec $lockman
 
 exec wl-paste -t text --watch clipman store --no-persist
 exec_always nm-applet --indicator
-exec_always --no-startup-id pkill pasystray; pasystray --key-grabbing --notify=all
+exec_always --no-startup-id pkill pasystray; pasystray --notify=all
 exec_always --no-startup-id pkill blueman-applet; blueman-applet
 
 exec systemctl start --user ssh-agent
