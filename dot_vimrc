@@ -124,3 +124,13 @@ let g:ale_lint_on_enter = 1
 let g:ale_lint_on_text_changed = 1
 let g:ale_sign_column_always = 1
 " }}}
+
+" Remember position of last edit and return on reopen
+if has("autocmd")
+  au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
+endif
+
+augroup Markdown
+  autocmd!
+  autocmd FileType markdown set wrap
+augroup END
