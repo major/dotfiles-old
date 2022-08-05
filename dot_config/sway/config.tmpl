@@ -211,10 +211,8 @@ exec wl-paste -t text --watch clipman store --no-persist
 exec_always nm-applet --indicator
 exec_always --no-startup-id pkill pasystray; pasystray --notify=all
 exec_always --no-startup-id pkill blueman-applet; blueman-applet
-
-exec systemctl start --user ssh-agent
-
 exec_always pactl load-module module-switch-on-connect
+exec systemctl --user restart ssh-agent.service
 
 input "1241:662:USB-HID_Keyboard" {
   xkb_numlock enable
