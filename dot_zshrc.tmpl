@@ -122,6 +122,6 @@ command -v pyenv >/dev/null || export PATH="$PYENV_ROOT/bin:$PATH"
 autoload -U compinit; compinit
 
 # Use the ssh-agent started by systemd.
-export SSH_AUTH_SOCK="$XDG_RUNTIME_DIR/ssh-agent.socket"
+export SSH_AUTH_SOCK="$XDG_RUNTIME_DIR/keyring/ssh"
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
