@@ -2,5 +2,9 @@ font=Hack 10
 background-color=#000000DD
 default-timeout=10000
 width=750
-#output=DP-2
+{{ if eq .chezmoi.hostname "nano" }}
+output=eDP-1
+{{ else if eq .chezmoi.hostname "amdbox" }}
+output=DP-2
+{{ end }}
 anchor=bottom-right
