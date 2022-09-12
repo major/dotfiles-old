@@ -121,4 +121,6 @@ autoload -U compinit; compinit
 # Use the ssh-agent started by systemd.
 export SSH_AUTH_SOCK="$XDG_RUNTIME_DIR/keyring/ssh"
 
+export GPG_TTY=$(tty)
+
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
